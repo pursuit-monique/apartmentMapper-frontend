@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+.map {
+  height: 100vh;
+  width: 100vw;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -28,6 +38,17 @@
   color: #61dafb;
 }
 
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bs-secondary);
+}
+
+.border-bottom-width{
+  border-bottom-width: 4px; /* Adjust the thickness as desired */
+}
+.transparent-frame{
+      background-color: rgba(255, 255, 255, 0.7); /* 70% white, 30% transparent */
+    backdrop-filter: blur(5px); /* Optional: Apply a blur effect to the background */
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
