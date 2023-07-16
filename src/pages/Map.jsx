@@ -130,14 +130,14 @@ const offcanvasRefTwo = useRef();
               {/* </MarkerClusterer> */}
           </GoogleMap>
         )}
-          <div ref={offcanvasRef} className="offcanvas offcanvas-start w-45" tabIndex="-1" id="myOffcanvas">
+          <div ref={offcanvasRef} className="offcanvas offcanvas-start" style={{width: '30vw'}} tabIndex="-1" id="myOffcanvas">
         <div className={`offcanvas-header ${currApartment.isvacant === "Vacant" ? "bg-info bg-gradient" : "bg-danger bg-gradient"
 }`}>
           <h5 className="offcanvas-title text-white">{currApartment.contractor} <span className="text-end"> ID: #{currApartment.id}</span></h5>
           <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div className="offcanvas-body p-0">
-        <div className="container-fluid h-50 w-100 p-0 m-0">
+        <div className="container-fluid h-50 p-0 m-0">
       <div className="row h-100">
         <div className="col">
           <iframe
@@ -188,7 +188,7 @@ const offcanvasRefTwo = useRef();
 
 
 
-       <table class="table table-borderless text-start mx-auto w-75 fs-6">
+       <table class="table table-borderless text-start mx-auto w-75 fs-6" style={{fontSize: "smallest"}}>
   <tbody>
 
 
