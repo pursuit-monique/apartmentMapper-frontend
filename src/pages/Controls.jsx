@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+const KEY = process.env.REACT_APP_BACKEND_URL;
 
 function Controls({setApartmentList, selectedValue, selection}){
     // const [selection, setSelection] = useState('');
@@ -12,7 +13,7 @@ function Controls({setApartmentList, selectedValue, selection}){
 
     useEffect(() => {
         axios
-          .get(`http://localhost:3331/contractors/`)
+          .get(`${KEY}/contractors/`)
           .then((response) => {
             // console.log(response.data)
             setContractorList(response.data);
@@ -27,7 +28,7 @@ function Controls({setApartmentList, selectedValue, selection}){
 
       useEffect(() => {
         axios
-          .get(`http://localhost:3331/contractors/boroughs/`)
+          .get(`${KEY}/contractors/boroughs/`)
           .then((response) => {
             // console.log(response.data)
             setBoroughList(response.data);
@@ -51,7 +52,7 @@ function Controls({setApartmentList, selectedValue, selection}){
         console.log("current selection", selection.current)
             if (Object.keys(selection.current).every((key) =>!selection.current[key] )) {
               axios
-                .get(`http://localhost:3331/apartments/`)
+                .get(`${KEY}/apartments/`)
                 .then((response) => {
                   setApartmentList(response.data);
                 //   setIsLoaded(true);
@@ -73,11 +74,11 @@ function Controls({setApartmentList, selectedValue, selection}){
               ;
               console.log("query:", query);
               axios
-                .get(`http://localhost:3331/apartments/query/?${query}`)
+                .get(`${KEY}/apartments/query/?${query}`)
                 .then((response) => {
                   // Handle the response data
                   setApartmentList(response.data);
-                  console.log('query', `${process.env.REACT_APP_BACKEND_URL}apartments/query/?${query}`)
+                  console.log('query', `${KEY}apartments/query/?${query}`)
                 //   setIsLoaded(true);
                 })
                 .catch((error) => {

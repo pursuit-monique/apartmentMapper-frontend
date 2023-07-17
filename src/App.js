@@ -11,6 +11,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
+const KEY = process.env.REACT_APP_BACKEND_URL;
+
 function App() {
   // const [selectedValue, setSelectedValue] = useState("nothing");
   const [apartmentList, setApartmentList] = useState();
@@ -41,7 +43,7 @@ function App() {
   // }, [selectedValue]);
   useEffect(() => {
     axios
-      .get("http://localhost:3331/apartments/")
+      .get(`${KEY}/apartments/`)
       .then((response) => {
         // Handle the response data
         setApartmentList(response.data);
