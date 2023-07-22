@@ -9,3 +9,11 @@
     backdrop-filter: blur(12px); /* Optional: Apply a blur effect to the background */
   }
   
+
+
+  @media (max-width: 768px) {
+    .mx-5 {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }

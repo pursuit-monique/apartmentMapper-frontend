@@ -1,5 +1,5 @@
 import Controls from "./Controls";
-import './NavBar.css'; // Create this file for custom styles
+import './NavBar.css'; 
 
 export default function NavBar({setApartmentList, apartmentList, selectedValue, setSelectedValue, selection}) {return (
 // {/* <div className="navbar bg-base-100 bg-light bg-gradient bg-opacity-10 border border-bottom"> */}

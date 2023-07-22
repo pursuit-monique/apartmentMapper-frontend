@@ -5,9 +5,10 @@ import { Offcanvas, Toast, Tooltip } from 'bootstrap'
 
 export default function Map({apartmentList, selection}) {
 
-
+console.log("selection", selection)
     const [currApartment, setCurrApartment] = useState('');
     const [bounceToggle, setBounceToggle] = useState({on: false, id: null});
+    const [isNowLoaded, setIsLoaded] = useState(false);
     const currList = useRef(apartmentList);
 
     
@@ -16,6 +17,11 @@ export default function Map({apartmentList, selection}) {
 
     console.log(tooltipList);
 
+
+
+    function setLoaded (){
+      setIsLoaded(true);
+    }
 
 
  useEffect(() =>{
@@ -48,7 +54,7 @@ export default function Map({apartmentList, selection}) {
               toast.hide();
             }, 10000); 
           }
-        }, []); 
+        }, [isNowLoaded]); 
     
 
     // console.log("map", apartmentList);
@@ -104,7 +110,11 @@ const offcanvasRefTwo = useRef();
             center={center}
             zoom={11}
             options={{mapId: '1bbc82a69df772e2'}}
-            onLoad={() => triggerCustomToast}
+            onLoad={() =>{ 
+              triggerCustomToast();
+              setLoaded(true);
+            }
+          }
           >
             {/* <Marker position={{address: '22518 mentone ave. laurelton NY 11413'}} /> */}
             {/* <MarkerClusterer options={options}> */}
@@ -247,11 +257,9 @@ const offcanvasRefTwo = useRef();
  <strong> Offline Info:</strong> {currApartment.offlineinfo} </p> */}
  <div class="d-grid gap-2">
   <button class={`btn text-white ${currApartment.isvacant === "Vacant" ? "btn-info bg-gradient" : "btn-danger bg-gradient"
-}`} type="button" style={{borderRadius: '0px'}}>More Info</button>
+}`} type="button" id="myModal" style={{borderRadius: '0px'}} onClick={openOffcanvasbottom}>More Info</button>
 </div>
         </div>
-
-
 
     </div>
 
@@ -262,12 +270,12 @@ const offcanvasRefTwo = useRef();
         </div>
         <div className="offcanvas-body p-1">
         <table class="table table-striped table-hover">
-        <thead>
-    <tr>
+        <thead className="text-info">
+    <tr className="text-info">
       <th scope="col">#</th>
-      <th scope="col">Contractor</th>
-      <th scope="col">Borough</th>
-      <th scope="col">Online</th>
+      <th scope="col" className="text-info">Contractor</th>
+      <th scope="col" className="text-info">Borough</th>
+      <th scope="col" className="text-info">Online</th>
       <th scope="col">Address</th>
       <th scope="col">Floor</th>
       <th scope="col">Apartment</th>
@@ -284,8 +292,31 @@ const offcanvasRefTwo = useRef();
 
     </tr>
   </thead>
+
   <tbody>
-  {apartmentList?.map(tableRow => {
+  {!!currApartment.contractor ? 
+          <tr class={`${currApartment.isvacant !== "Occupied" ? "table-info" : "table-danger"}`}>
+          {/* <th scope="row"></th> */}
+          <th scope="row">{currApartment.id}</th>
+          <td>{currApartment.contractor}</td>
+          <td>{currApartment.borough}</td>
+          <td>{currApartment.isoffline}</td>
+          <td>{currApartment.staddress}</td>
+          <td>{currApartment.floor}</td>
+          <td>{currApartment.apartment}</td>
+          <td>{currApartment.city}</td>
+          <td>{currApartment.zip}</td>
+          <td>{currApartment.num_bedrooms}</td>
+          <td>{currApartment.isvacant}</td>
+          <td>{currApartment.vacant}</td>
+          <td>{currApartment.gender}</td>
+          <td>{currApartment.apttreatment}</td>
+          <td>{currApartment.accessable}</td>
+          <td>{currApartment.offlineinfo}</td>
+          <td>{currApartment.notes}</td>
+        </tr> :
+        null}
+ {apartmentList?.filter(apartment => currApartment.id !== apartment.id).map(tableRow => {
     return (
         <tr>
         {/* <th scope="row"></th> */}
@@ -333,6 +364,9 @@ const offcanvasRefTwo = useRef();
 
 
 
+
+      { isNowLoaded ?
+
     <div class="position-absolute top-0 start-50 translate-middle-x bg-light shadow-lg rounded border align-middle card" style={{height: 'auto', width: '30vw', marginTop: '20vh'}}> 
     <div className="p-1 transparent-frame border shadow-lg ">
         <div className="border border-dark-subtle">
@@ -352,6 +386,8 @@ const offcanvasRefTwo = useRef();
     </div>
     </div>
       </div>
+      : <></>}
+
       </div>
 
       );
