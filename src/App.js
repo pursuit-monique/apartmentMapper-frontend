@@ -35,7 +35,7 @@ function App() {
       .catch((error) => {
         console.error(error);
       });
-  }, [isLoaded]);
+  }, [apartmentList.length < 1]);
 
   return (
     <div className="App">
