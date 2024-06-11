@@ -35,31 +35,27 @@ function App() {
       .catch((error) => {
         console.error(error);
       });
-  }, [apartmentList.length < 1]);
+  }, []);
 
   return (
     <div className="App">
       <Router>
-        {isLoaded ? (
-          <NavBar
-            setApartmentList={setApartmentList}
-            apartmentList={apartmentList}
-            selectedValue={selectedValue}
-            setSelectedValue={setSelectedValue}
-            selection={selection}
-          />
-        ) : null}
+        <NavBar
+          setApartmentList={setApartmentList}
+          apartmentList={apartmentList}
+          selectedValue={selectedValue}
+          setSelectedValue={setSelectedValue}
+          selection={selection}
+        />
+
         <Routes>
-          {!isLoaded ? (
-            <Route path="/" element={<ExcelReader />} />
-          ) : (
-            <Route
-              path="/"
-              element={
-                <Map apartmentList={apartmentList} selection={selection} />
-              }
-            />
-          )}
+          <Route path="/update" element={<ExcelReader />} />
+          <Route
+            path="/"
+            element={
+              <Map apartmentList={apartmentList} selection={selection} />
+            }
+          />
         </Routes>
       </Router>
     </div>
