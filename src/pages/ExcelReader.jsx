@@ -55,7 +55,7 @@ function ExcelReader() {
 
 
   return (
-    <div>
+    <div style={{marginTop: "25rem"}}>
       <input type="file" onChange={handleFileUpload} />
     </div>
   );
