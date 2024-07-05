@@ -37,8 +37,6 @@ function ExcelReader() {
             "offlineInfo": row[14],
             "aptTreatment": row[15],
             "notes": row[16],
-            "lat": row[17],
-            "lng": row[18]
           };
           
   
