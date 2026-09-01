@@ -267,7 +267,7 @@ console.log("selection", selection)
           <td>{currApartment.notes}</td>
         </tr> :
         null}
- {apartmentList?.filter(apartment => currApartment.id !== apartment.id).map(tableRow => {
+ {(Array.isArray(apartmentList) ? apartmentList : []).filter(apartment => currApartment.id !== apartment.id).map(tableRow => {
     return (
         <tr>
         {/* <th scope="row"></th> */}
